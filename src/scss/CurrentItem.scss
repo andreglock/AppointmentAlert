@@ -1,0 +1,172 @@
+@import './Colors.scss';
+$sidebar-width: 250px;
+
+#itemWrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+    perspective: 1500px;
+    overflow-x: hidden;
+    #itemSidebar {
+        width: $sidebar-width;
+        min-height: 100vh;
+        background-color: $background;
+        color: $text;
+        transition: all 0.6s cubic-bezier(0.945, 0.020, 0.270, 0.665);
+        transform-origin: bottom left;
+        flex-shrink: 0;
+        .itemLink {
+            cursor: pointer;
+        }
+        .breadcrumb::after {
+            content: '›';
+            font-size: x-large;
+            cursor: default;
+        }
+        .dotsBefore::before {
+            content: '...›';
+            font-size: x-large;
+            cursor: default;
+        }
+    }
+}
+
+#content {
+    padding-top: 80px;
+    width: inherit;
+    margin-right: -$sidebar-width;
+    .buttonContainer {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        #itemPageLogout {
+            width: max-content;
+            height: 40px;
+            margin-top: 20px;
+            margin-right: 20px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            box-shadow: $link-text 0 0 10px;
+        }
+    }
+    #itemCard {
+        margin: 25px;
+    }
+    .subitemsContainer {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        .subitemContainer {
+            background-color: $secondary;
+            margin: 10px;
+            flex-basis: 120px;
+            border-radius: 25px;
+            padding: 15px 0;
+            box-shadow: 3px 3px 10px 5px #000000;
+            a {
+                color: $text;
+            }
+        }
+    }
+    button {
+        border-radius: 5px;
+        padding: 5px
+    }
+    button.iconButton {
+        width: 25px;
+        height: 25px;
+        padding: 0;
+    }
+}
+
+#itemSidebar.active {
+    margin-left: -$sidebar-width;
+    transform: rotateY(100deg);
+}
+
+@media (min-width: 768px) {
+    #itemWrapper {
+        overflow-x: scroll;
+    }
+    #content {
+        margin-right: 0;
+        padding: 80px 5vw 0;
+        .subitemsContainer {
+            .subitemContainer {
+                margin: 15px;
+                flex-basis: 160px;
+            }
+        }
+    }
+}
+
+/* =x button style */
+#sidebarCollapse {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: $link-text 0 0 10px;
+    position: absolute;
+    transition: all 0.8s cubic-bezier(0.810, -0.330, 0.345, 1.375);
+    top: 20px;
+    left: calc(#{$sidebar-width} + 15px);
+    border: none;
+        span {
+            width: 80%;
+            height: 2px;
+            margin: 0 auto;
+            display: block;
+            background: $dark-background;
+            transition: all 0.8s cubic-bezier(0.810, -0.330, 0.345, 1.375);
+            transition-delay: 0.2s;
+        }
+        span:first-of-type {
+            transform: rotate(45deg) translate(2px, 2px);
+        }
+        span:nth-of-type(2) {
+            opacity: 0;
+        }
+        span:last-of-type {
+            transform: rotate(-45deg) translate(1px, -1px);
+        }
+    }
+    
+    #sidebarCollapse.active {
+            left: 20px;
+        span {
+            transform: none;
+            opacity: 1;
+            margin: 5px auto;
+        }
+}
+
+.listsContainer {
+    margin: 5px;
+    padding: 10px;
+    border: 1px solid $text-secondary;
+    ul {
+        text-align: left;
+        position: relative;
+        list-style: none;
+        padding-left: 15px;
+        div {
+            width: fit-content;
+            .navbarArrow {
+                margin-right: 10px;
+                cursor: pointer;
+            }
+        }
+    }
+    .rootUl li::before {
+        content: "▸";
+        margin-left: -10px;
+        margin-right: 10px;
+    }
+    li.rotateBefore::before {
+        display: inline-block;
+        transform: rotate(0.25turn);
+    }
+}
+  

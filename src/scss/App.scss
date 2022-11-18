@@ -1,0 +1,50 @@
+@import "./Colors.scss";
+
+* {
+	box-sizing: border-box;
+}
+
+.App {
+	text-align: center;
+	font-family: Sora, sans-serif;
+
+	.App-header {
+		background-color: $dark-background;
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		font-size: calc(10px + 2vmin);
+		color: $text;
+
+		.logRegNav {
+		display: grid;
+		justify-content: space-around;
+		text-decoration: none;
+		color: $text;
+		margin-bottom: 30px;
+		grid-template-columns: repeat(2, 50%);
+		grid-template-rows: repeat(1, auto);
+
+			:visited {
+				color: inherit;
+			}
+			:hover {
+				cursor: pointer;
+			}
+			div {
+				text-decoration: none;
+			}
+		}
+  	}	
+
+	a {
+		color: $link-text;
+	}
+
+	button {
+		cursor: pointer;
+		background-color: $text;
+	}
+} 
