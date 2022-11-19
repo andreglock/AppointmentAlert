@@ -6,7 +6,7 @@ import UserContext from '../contexts/UserContext';
 import { NavLink } from 'react-router-dom';
 import UniverseDescPrompt from './UniverseDescPrompt.jsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 
 import '../scss/Alert.scss'
 
