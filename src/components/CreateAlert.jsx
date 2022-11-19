@@ -1,11 +1,13 @@
-import { useState } from 'react';
-import createAppointment from '../libs/createAppointment';
+import { useState, useEffect } from 'react';
+import createAlert from '../libs/createAlert';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import '../scss/CreateAlert.scss';
 import MessageModal from './MessageModal';
+import Alert from './Alert';
+import getTypes from '../libs/getTypes';
 
-const types = [
+const defaultTypes = [
     {
         id: 1,
         name: "Abholung des Aufenthaltstitels"
@@ -14,6 +16,7 @@ const types = [
 
 export default function CreateAlert(props) {
     const handleClose = () => props.setShow(false);
+    const [types, setTypes] = useState(defaultTypes)
     const [type, setType] = useState("");
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(null)
@@ -21,6 +24,13 @@ export default function CreateAlert(props) {
     const [isOpen, setIsOpen] = useState(false)
     const [isSuccess, setIsSuccess] = useState(false)
 
+    // useEffect(() => {
+    //     const result = getTypes()
+    //     if(!result.result) {
+    //         setTypes(result)
+    //     }
+    // }, [])
+    
     const handleTimeFrame = (dates) => {
         const [start, end] = dates;
         setStartDate(start);
@@ -29,7 +39,7 @@ export default function CreateAlert(props) {
 
     async function submitHandler(e) {
         e.preventDefault();
-        const request = await createAppointment(type, startDate.toISOString(), endDate.toISOString());
+        const request = await createAlert(type, startDate.toISOString(), endDate.toISOString());
         setIsOpen(true)
         if (request.success) {
             setIsSuccess(true)
