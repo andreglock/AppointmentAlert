@@ -58,7 +58,7 @@ export default function CreateAlert(props) {
                     </select>
                 </div>
                 <div className='time-frame-container'>
-                    <label  htmlFor="timeFrame">Time frame:</label>
+                    <label htmlFor="timeFrame">Time frame:</label>
                     <DatePicker
                         selected={startDate}
                         onChange={handleTimeFrame}
