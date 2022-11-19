@@ -1,6 +1,7 @@
 import UserContext from '../contexts/UserContext';
 import { useContext, useState } from 'react';
 import CreateAlert from './CreateAlert';
+import Header from './Header';
 
 
 export default function Home () {
@@ -9,11 +10,7 @@ export default function Home () {
 
 
   return <div id='homeContainer'>
-    <header>
-      <div>
-        Logged in as {user.userEmail}
-      </div>
-    </header>
+    <Header />
     <h1>
       Welcome!
     </h1>
