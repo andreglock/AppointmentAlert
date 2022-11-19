@@ -1,5 +1,4 @@
 import React from 'react'
-import { Redirect } from "react-router-dom";
 import '../scss/MessageModal.scss';
 
 export default function MessageModal({message, isOpen, setIsOpen, isSuccess, handleClose}) {

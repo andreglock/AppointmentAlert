@@ -1,11 +1,12 @@
 import axios from 'axios';
+import GlobalConfig from '../dev.json';
 
-export default async function createItem (type, startDate, endDate) {
+export default async function createAlert (type, startDate, endDate) {
     let errorMessage;
     let alerts;
     const token = localStorage.getItem('authToken');
-
-    await axios.post('/createAlert', {
+    const url = GlobalConfig.endpoint;
+    await axios.post(url + '/alerts', {
         type: type,
         startDate: startDate,
         endDate: endDate,

@@ -216,7 +216,7 @@ export default function CurrentItem (props) {
                         parentId={id}
                         universeId={itemInfo.universeId}
                     /> :
-                    <button onClick={() => setShowCreatePage(true)} testId="createItemButton">
+                    <button onClick={() => setShowCreatePage(true)} testId="createAlertButton">
                         New item
                     </button>
                 }
