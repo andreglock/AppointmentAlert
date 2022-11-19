@@ -1,6 +1,6 @@
 @import './Colors.scss';
 
-.universeCard {
+.Alert {
     margin: 10px 10vw 30px;
     padding: 1px;
     background-color: $secondary;
@@ -15,7 +15,7 @@
             flex-grow: 1;
             padding: 0 15px;
         }
-        .universeCardButton {
+        .AlertButton {
             border-radius: 5px;
             width: 30px;
             height: 30px;

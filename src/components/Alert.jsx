@@ -8,9 +8,9 @@ import UniverseDescPrompt from './UniverseDescPrompt.jsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
-import '../scss/UniverseCard.scss'
+import '../scss/Alert.scss'
 
-export default function UniverseCard (props) {
+export default function Alert (props) {
     const [ showDescPrompt, setShowDescPrompt] = useState(false);
     const [ descendantsLength, setDescendantsLength ] = useState(false);
     const [ itemInfo, setItemInfo ] = useState({});
@@ -61,7 +61,7 @@ export default function UniverseCard (props) {
         }
     }
 
-    return <div className="universeCard" key={Math.floor(Math.random() * 10000)} data={id}>
+    return <div className="Alert" key={Math.floor(Math.random() * 10000)} data={id}>
         <h3>
             <NavLink exact to={{ pathname:'/item', hash: `${id}` }} replace style={{ textDecoration: 'none' , color: "white"}}  testId="universeLink">
                 {title}
@@ -71,7 +71,7 @@ export default function UniverseCard (props) {
                 body="This action cannot be undone."
                 confirmText="Delete Universe"
                 title="Are you sure you want to delete this universe?">
-                <button className="universeCardButton" testId="deleteUniverseButton">
+                <button className="AlertButton" testId="deleteUniverseButton">
                     <FontAwesomeIcon icon={faTrash}/>
                 </button>
             </Confirm>

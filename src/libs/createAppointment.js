@@ -1,16 +1,14 @@
 import axios from 'axios';
 
-export default async function createItem (title, description, isRoot, parentId, universeId, imgPath, referenceId) {
+export default async function createItem (type, startDate, endDate) {
     let errorMessage;
-    let item;
+    let alerts;
     const token = localStorage.getItem('authToken');
 
-    await axios.post('/createItem', {
-        title: title,
-        description: description,
-        isRoot: isRoot,
-        parentId: parentId,
-        universeId: universeId
+    await axios.post('/createAlert', {
+        type: type,
+        startDate: startDate,
+        endDate: endDate,
     },
     {
         headers: {
@@ -22,7 +20,7 @@ export default async function createItem (title, description, isRoot, parentId, 
             if (response.status !== 201 ) {
                 errorMessage = response.message;
             }
-            item = response.data._id;
+            //TODO alerts = response.data._id;
             alert("Created successfully");
         })
         .catch(error => {
@@ -31,6 +29,6 @@ export default async function createItem (title, description, isRoot, parentId, 
     if (errorMessage) {
         return { success: false, result: errorMessage }
     } else {
-        return { success: true, id: item }
+        return { success: true, id: alerts }
     }
 }
