@@ -8,7 +8,12 @@ export default function Home () {
   const [ showCreate, setShowCreate] = useState(false);
 
 
-  return <div>
+  return <div id='homeContainer'>
+    <header>
+      <div>
+        Logged in as {user.userEmail}
+      </div>
+    </header>
     <h1>
       Welcome!
     </h1>
