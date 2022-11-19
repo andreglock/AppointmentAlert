@@ -41,6 +41,29 @@
 			min-height: 100vh;
 			display: flex;
 			flex-direction: column;
+			align-items: center;
+			header {
+				font-size: small;
+				position: sticky;
+				display: flex;
+				justify-content: space-between;
+				padding: 5px 5px;
+				background-color: $text;
+				color: $dark-background;
+				width: 100vw;
+				@media (min-width: 768px) {
+					font-size: medium;
+					padding: 5px 25px;
+				}
+				#itemPageLogout {
+					display: block;
+					cursor: pointer;
+					background-color: $dark-background;
+					color: $text-secondary;
+					border-radius: 5px;
+					padding: 5px;
+				}
+			}
 		}
 
   	}	
