@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import createAppointment from '../libs/createAppointment';
 import DatePicker from "react-datepicker";
-
 import "react-datepicker/dist/react-datepicker.css";
-
 import '../scss/CreateAlert.scss';
+import MessageModal from './MessageModal';
 
 const types = [
     {
@@ -19,6 +18,8 @@ export default function CreateAlert(props) {
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(null)
     const [message, setMessage] = useState("");
+    const [isOpen, setIsOpen] = useState(false)
+    const [isSuccess, setIsSuccess] = useState(false)
 
     const handleTimeFrame = (dates) => {
         const [start, end] = dates;
@@ -29,12 +30,13 @@ export default function CreateAlert(props) {
     async function submitHandler(e) {
         e.preventDefault();
         const request = await createAppointment(type, startDate.toISOString(), endDate.toISOString());
+        setIsOpen(true)
         if (request.success) {
-            // add universe to current state
-            handleClose();
+            setIsSuccess(true)
         } else {
-            console.log('request', type, startDate.toISOString(), endDate.toISOString())
-            setMessage(request.result);
+            setIsSuccess(true)
+            setMessage('There has been an error')
+            // setMessage(request.result);
         }
     }
 
@@ -51,7 +53,7 @@ export default function CreateAlert(props) {
                     <label htmlFor="title">Type:</label>
                     <select name="type" id="type-select" onChange={(e) => setType(e.target.value)}>
                         {types.map(obj => (
-                            <option value={obj.id}>{obj.name}</option>
+                            <option value={obj.id} key={obj.id}>{obj.name}</option>
                         ))}
                     </select>
                 </div>
@@ -72,5 +74,7 @@ export default function CreateAlert(props) {
                 <div>{`${message}`}</div>
             </form>
         </div>
+
+        <MessageModal message={message} isOpen={isOpen} setIsOpen={setIsOpen} isSuccess={isSuccess} handleClose={handleClose} />
     </div>
 }
