@@ -1,17 +1,15 @@
 import axios from 'axios';
 
-export default function login (email, password, stay, setUser,  setMessage) {
-    axios.post('/login', {
-        email: email,
-        password: password,
-        stay: stay
+export default function login(email, password, setUser, setMessage) {
+    const url = 'http://127.0.0.1:5000/https://romahn.dev/api'
+    axios.post(url + '/login', {
+        username: email,
+        password: password
     })
         .then(response => {
-            localStorage.setItem('authToken', response.data.token);
+            localStorage.setItem('authToken', response.data.access_token);
             setUser({ 
-                userEmail: response.data.email,
-                userName: response.data.userName,
-                imageIndex: response.data.imageIndex
+                userEmail: response.data.username,
             });
         })
         .catch(error => {

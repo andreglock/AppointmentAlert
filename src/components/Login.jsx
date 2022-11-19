@@ -2,19 +2,18 @@ import { useContext, useState } from 'react';
 import login from '../libs/login.js';
 import UserContext from '../contexts/UserContext';
 
-import '../scss/Login.scss'
+import '../scss/Login.scss';
 
 export default function Login(props){
     const [ password, setPassword ] = useState("");
     const [ email, setEmail ] = useState("");
-    const [ stay, setStay ] = useState(false);
     const [ message, setMessage ] = useState("");
 
     const setUser = useContext(UserContext)[1];
 
     function submitHandler(e) {
         e.preventDefault();
-        login(email, password, stay, setUser, setMessage);
+        login(email, password, setUser, setMessage);
     }
 
     return <div className="loginContainer">
@@ -31,10 +30,6 @@ export default function Login(props){
                 <input 
                     type="password" id="password" required minLength={6} onChange={e => setPassword(e.target.value)}
                 />
-            </div>
-            <div>
-                <label htmlFor="stay">Stay logged-in:</label>
-                <input type="checkbox" id="stay" onChange={e => setStay(e.target.checked)}/>
             </div>
             <button type="submit">
                 Login
