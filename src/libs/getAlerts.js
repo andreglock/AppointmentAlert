@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export default async function getItems (params) {
+export default async function getAlerts (params) {
     let universes;
     let errorMessage;
     const token = localStorage.getItem('authToken');
