@@ -1,30 +1,20 @@
-import { useState } from "react";
-import createItem from "../libs/createItem";
+import { useState } from 'react';
+import createAppointment from '../libs/createAppointment';
 
-import '../scss/CreatePage.scss'
+import '../scss/CreatePage.scss';
 
-export default function CreatePage(props) {
+export default function CreateAlert(props) {
     const handleClose = () => props.setShow(false);
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [message, setMessage] = useState("");
 
-    const isRoot = props.isRoot;
-    const parentId = props.parentId ? props.parentId : null;
-    const items = props.items;
-    const setItems = props.setItems;
-    const universeId = isRoot ? null : props.universeId;
-
     async function submitHandler(e) {
         e.preventDefault();
-        const request = await createItem(title, description, isRoot, parentId, universeId);
+        const request = await createAppointment(title, description);
         if (request.success) {
             // add universe to current state
-            if (items) {
-                items.push({ title: title, description: description, _id: request.id, universeId: universeId });
-                // add values and not pointers:
-                setItems([...items]);
-            }
+            
             handleClose();
         } else {
             setMessage(request.result);
@@ -34,7 +24,7 @@ export default function CreatePage(props) {
     return <div className="createPageModal">
         <div className="createPageContainer">
             <h2>
-                New {isRoot ? "Universe" : "Item"}
+                New Appointment
                 <button onClick={handleClose}>
                     X
                 </button>
@@ -57,7 +47,7 @@ export default function CreatePage(props) {
                     />
                 </div>
                 <button type="submit">
-                    Create {isRoot ? "Universe" : "Item"}
+                    Create Appointment
                 </button>
                 <div>{`${message}`}</div>
             </form>

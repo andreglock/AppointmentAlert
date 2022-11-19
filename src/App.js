@@ -6,8 +6,7 @@ import Register from './components/Register';
 import './scss/App.scss';
 import useUserContext from './contexts/useUserContext';
 import UserContext from './contexts/UserContext';
-import CurrentItem from './components/CurrentItem';
-import UserSettings from './components/UserSettings';
+import Home from './components/Home';
 
 function App() {
 
@@ -33,9 +32,7 @@ function App() {
 						</div>
 						:
 						<Switch>
-							<Route path='/item' component={() => <CurrentItem />} />
-							<Route path='/userSettings' component={() => <UserSettings />} />
-							<Route path='/' component={() => <UserMenu />} />
+							<Route path='/' component={() => <Home />} />
 							<Route path='*'>
 								<Redirect to='/' />
 								<UserMenu/>

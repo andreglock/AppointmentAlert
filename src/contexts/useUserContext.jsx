@@ -6,6 +6,7 @@ function getSavedValue(key){
     let savedValue = localStorage.getItem(key);
 
     if (savedValue === "null" || savedValue === "undefined" ) {
+        return 'testUser'
         return null;
     }
 

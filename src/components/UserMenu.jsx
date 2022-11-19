@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import getItems from '../libs/getItems.js';
-import CreatePage from './CreatePage';
+import CreateAlert from './CreateAlert';
 import UniverseCard from './UniverseCard';
 import UserContext from '../contexts/UserContext';
 import { useContext } from 'react';
@@ -39,7 +39,7 @@ export default function UserMenu (props) {
             <div className="universesContainer">
             {universes.length ? <h2>My universes</h2> : null}
             {showCreatePage ?
-                <CreatePage 
+                <CreateAlert 
                     setShow={setShowCreatePage}
                     show={showCreatePage}
                     isRoot={true}
