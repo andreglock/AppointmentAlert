@@ -20,6 +20,26 @@
         transform: translate(-50%,-50%);
         -webkit-box-shadow: 5px 5px 15px 5px #000000; 
         box-shadow: 5px 5px 15px 5px #000000;
+
+        h2 {
+            button {
+                position: absolute;
+                top: 1.2rem;
+                right: 1.2rem
+            }
+        }
+
+        form {
+            .type-container {
+                label {
+                    margin-right: 1rem;
+                }
+                margin-bottom: 1rem;
+                select {
+                    font-size: 1.2rem;
+                }
+            }
+        }
     }
     .description{
         width: 90%;
