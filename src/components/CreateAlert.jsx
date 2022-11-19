@@ -34,7 +34,7 @@ export default function CreateAlert(props) {
         if (request.success) {
             setIsSuccess(true)
         } else {
-            setIsSuccess(true)
+            setIsSuccess(false)
             setMessage('There has been an error')
             // setMessage(request.result);
         }

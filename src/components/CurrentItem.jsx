@@ -170,7 +170,7 @@ export default function CurrentItem (props) {
             </button>
             {/* Main area with cards */}
             <div id="content">
-                <div id="itemCard" className="universeCard">
+                <div id="itemCard" className="Alert">
                     <h1>{itemInfo.title}</h1>
                     {editDescription ? <>
                         <div>

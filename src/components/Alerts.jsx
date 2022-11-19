@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
-import getItems from '../libs/getItems.js';
+import getAlerts from '../libs/getAlerts.js';
 import CreateAlert from './CreateAlert';
-import UniverseCard from './UniverseCard';
+import Alert from './Alert';
 import UserContext from '../contexts/UserContext';
 import { useContext } from 'react';
-import '../scss/UserMenu.scss';
+import '../scss/Alerts.scss';
 
-export default function UserMenu (props) {
-    const [ universes, setUniverses] = useState(false);
-    console.log('Universes:', universes);
+export default function Alerts (props) {
+    const [ alerts, setAlerts] = useState(false);
+    console.log('Universes:', alerts);
     // This state controls the modal "CreatePage":
     const [ showCreatePage, setShowCreatePage] = useState(false);
   
@@ -17,9 +17,9 @@ export default function UserMenu (props) {
     useEffect(() => {
         let rootRequest;
         async function fetchData () {
-            rootRequest = await getItems({ isRoot: true });
+            rootRequest = await getAlerts({ isRoot: true });
             if (rootRequest.success) {
-                setUniverses(rootRequest.result);
+                setAlerts(rootRequest.result);
             } else if (rootRequest.result === 401 ) {
                 // token is unauthorized => log out
                 localStorage.clear();
@@ -35,16 +35,16 @@ export default function UserMenu (props) {
         <header>
             <h1>Welcome {user.userName}</h1>
         </header>
-        {universes ? <>
+        {alerts ? <>
             <div className="universesContainer">
-            {universes.length ? <h2>My universes</h2> : null}
+            {alerts.length ? <h2>My universes</h2> : null}
             {showCreatePage ?
                 <CreateAlert 
                     setShow={setShowCreatePage}
                     show={showCreatePage}
                     isRoot={true}
-                    items={universes}
-                    setItems={setUniverses}
+                    items={alerts}
+                    setItems={setAlerts}
                 /> :
                 <button className="universePageButton" onClick={() => setShowCreatePage(true)}>
                     New universe
@@ -52,9 +52,9 @@ export default function UserMenu (props) {
             }
             </div>
             {/* check if length is not 0 */}
-            {universes.length ? 
-                    universes.map(universe => <UniverseCard key={universe._id}
-                        universe={universe} universes={universes} setUniverses={setUniverses}
+            {alerts.length ? 
+                    alerts.map(universe => <Alert key={universe._id}
+                        universe={universe} universes={alerts} setUniverses={setAlerts}
                     />)
                  :
             /* If request goes through and it's an empty array */

@@ -2,6 +2,7 @@ import UserContext from '../contexts/UserContext';
 import { useContext, useState } from 'react';
 import CreateAlert from './CreateAlert';
 
+
 export default function Home () {
   const [ user ] = useContext(UserContext);
   const [ showCreate, setShowCreate] = useState(false);

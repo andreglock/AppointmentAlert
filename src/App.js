@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route, Redirect, NavLink } from 'react-router-dom';
 import Login from './components/Login';
-import UserMenu from './components/UserMenu';
+import Alerts from './components/Alerts';
 import Register from './components/Register';
 import './scss/App.scss';
 import useUserContext from './contexts/useUserContext';
@@ -35,7 +35,7 @@ function App() {
 							<Route path='/' component={() => <Home />} />
 							<Route path='*'>
 								<Redirect to='/' />
-								<UserMenu/>
+								<Alerts/>
 							</Route>
 						</Switch>
 					}
