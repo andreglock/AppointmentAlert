@@ -1,7 +1,8 @@
 import axios from 'axios';
+import GlobalConfig from '../dev.json';
 
 export default function login(email, password, setUser, setMessage) {
-    const url = 'http://127.0.0.1:5000/https://romahn.dev/api'
+    const url = GlobalConfig.endpoint;
     axios.post(url + '/login', {
         username: email,
         password: password
