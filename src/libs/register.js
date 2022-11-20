@@ -1,6 +1,6 @@
 import axios from 'axios';
 import login from './login.js';
-import GlobalConfig from '../dev.json';
+import GlobalConfig from '../endpoint.json';
 
 export default function register (email, password, setUser, setMessage) {
     const url = GlobalConfig.endpoint;

@@ -5,7 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import '../scss/CreateAlert.scss';
 import MessageModal from './MessageModal';
 import axios from "axios";
-import GlobalConfig from '../dev.json'
+import GlobalConfig from '../endpoint.json'
 
 
 

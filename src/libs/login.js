@@ -1,5 +1,5 @@
 import axios from 'axios';
-import GlobalConfig from '../dev.json';
+import GlobalConfig from '../endpoint.json';
 
 export default function login(email, password, setUser, setMessage) {
     const url = GlobalConfig.endpoint;

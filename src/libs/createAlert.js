@@ -1,5 +1,5 @@
 import axios from 'axios';
-import GlobalConfig from '../dev.json';
+import GlobalConfig from '../endpoint.json';
 
 
 export default async function createAlert (type, startDate, endDate) {
