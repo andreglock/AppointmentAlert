@@ -12,13 +12,13 @@ import GlobalConfig from '../dev.json'
 
 export default function CreateAlert(props) {
     const handleClose = () => props.setShow(false);
+    const {isCreateAlertSuccess, setIsCreateAlertSuccess} = props
     const [types, setTypes] = useState({})
     const [type, setType] = useState("LEIPZIG_RESIDENCE_PERMIT_PICKUP");
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(null)
     const [message, setMessage] = useState("");
     const [isOpen, setIsOpen] = useState(false)
-    const [isSuccess, setIsSuccess] = useState(false)
 
     useEffect(() => {
         const token = localStorage.getItem("authToken");
@@ -53,9 +53,9 @@ export default function CreateAlert(props) {
         setIsOpen(true)
         setMessage(request.result)
         if (request.success) {
-            setIsSuccess(true)
+            setIsCreateAlertSuccess(true)
         } else {
-            setIsSuccess(false)
+            setIsCreateAlertSuccess(false)
         }
     }
 
@@ -93,6 +93,6 @@ export default function CreateAlert(props) {
             </form>
         </div>
 
-        <MessageModal message={message} isOpen={isOpen} setIsOpen={setIsOpen} isSuccess={isSuccess} handleClose={handleClose} />
+        <MessageModal message={message} isOpen={isOpen} setIsOpen={setIsOpen} isSuccess={isCreateAlertSuccess} handleClose={handleClose} />
     </div>
 }

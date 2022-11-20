@@ -8,10 +8,11 @@ import Alerts from './Alerts';
 export default function Home () {
   const [ user ] = useContext(UserContext);
   const [ showCreate, setShowCreate] = useState(false);
+  const [isCreateAlertSuccess, setIsCreateAlertSuccess] = useState(false)
 
   return <div id='homeContainer'>
     <Header />
-    <Alerts />
+    <Alerts isCreateAlertSuccess={isCreateAlertSuccess}/>
     <button className="universePageButton" onClick={() => setShowCreate(true)}>
       New alert
     </button>
@@ -19,6 +20,8 @@ export default function Home () {
       <CreateAlert 
         setShow={setShowCreate}
         show={showCreate}
+        isCreateAlertSuccess={isCreateAlertSuccess}
+        setIsCreateAlertSuccess={setIsCreateAlertSuccess}
       /> 
       : null
     }

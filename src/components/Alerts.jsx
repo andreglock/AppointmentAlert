@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
 import getAlerts from '../libs/getAlerts.js';
-import CreateAlert from './CreateAlert';
 import Alert from './Alert';
 import UserContext from '../contexts/UserContext';
 import { useContext } from 'react';
 import '../scss/Alerts.scss';
 
-export default function Alerts (props) {
+export default function Alerts ({isCreateAlertSuccess}) {
     const [ alerts, setAlerts] = useState(false);
     const setUser = useContext(UserContext)[1];
 
@@ -25,7 +24,7 @@ export default function Alerts (props) {
             }
         };
         fetchData();
-    }, [setUser]);
+    }, [setUser, isCreateAlertSuccess]);
 
     return <div>
         {alerts ? <>
