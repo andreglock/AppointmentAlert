@@ -5,31 +5,41 @@ import "react-datepicker/dist/react-datepicker.css";
 import '../scss/CreateAlert.scss';
 import MessageModal from './MessageModal';
 import Alert from './Alert';
-import getTypes from '../libs/getTypes';
+import axios from "axios";
+import GlobalConfig from '../dev.json'
 
-const defaultTypes = [
-    {
-        id: 1,
-        name: "Abholung des Aufenthaltstitels"
-    }
-]
+
 
 export default function CreateAlert(props) {
     const handleClose = () => props.setShow(false);
-    const [types, setTypes] = useState(defaultTypes)
-    const [type, setType] = useState("");
+    const [types, setTypes] = useState({})
+    const [type, setType] = useState("LEIPZIG_RESIDENCE_PERMIT_PICKUP");
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(null)
     const [message, setMessage] = useState("");
     const [isOpen, setIsOpen] = useState(false)
     const [isSuccess, setIsSuccess] = useState(false)
 
-    // useEffect(() => {
-    //     const result = getTypes()
-    //     if(!result.result) {
-    //         setTypes(result)
-    //     }
-    // }, [])
+    useEffect(() => {
+        const token = localStorage.getItem("authToken");
+        const url = GlobalConfig.endpoint;
+        async function fetchTypes() {
+          await axios
+            .get(url + "/types", {
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+              },
+            })
+            .then((response) => {
+              setTypes(response.data);
+            })
+            .catch((error) => {
+              console.log("error from getTypes :>> ", error);
+            });
+        }
+        fetchTypes();
+    }, [])
     
     const handleTimeFrame = (dates) => {
         const [start, end] = dates;
@@ -41,12 +51,11 @@ export default function CreateAlert(props) {
         e.preventDefault();
         const request = await createAlert(type, startDate.toISOString(), endDate.toISOString());
         setIsOpen(true)
+        setMessage(request.result)
         if (request.success) {
             setIsSuccess(true)
         } else {
             setIsSuccess(false)
-            setMessage('There has been an error')
-            // setMessage(request.result);
         }
     }
 
@@ -61,9 +70,9 @@ export default function CreateAlert(props) {
             <form onSubmit={submitHandler}>
                 <div className='type-container'>
                     <label htmlFor="title">Type:</label>
-                    <select name="type" id="type-select" onChange={(e) => setType(e.target.value)}>
-                        {types.map(obj => (
-                            <option value={obj.id} key={obj.id}>{obj.name}</option>
+                    <select name="type" id="type-select" value={type} onChange={(e) => setType(e.target.value)}>
+                        {Object.values(types).map((value, index) => (
+                            <option value={Object.keys(types)[index]} key={index}>{value}</option>
                         ))}
                     </select>
                 </div>
@@ -81,7 +90,6 @@ export default function CreateAlert(props) {
                 <button type="submit">
                     Create Alert
                 </button>
-                <div>{`${message}`}</div>
             </form>
         </div>
 

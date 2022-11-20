@@ -1,15 +1,19 @@
 import axios from 'axios';
 import GlobalConfig from '../dev.json';
 
+
 export default async function createAlert (type, startDate, endDate) {
     let errorMessage;
-    let alerts;
     const token = localStorage.getItem('authToken');
     const url = GlobalConfig.endpoint;
+    console.log('type, startDate, endDate :>> ', type, startDate, endDate);
     await axios.post(url + '/alerts', {
-        type: type,
-        startDate: startDate,
-        endDate: endDate,
+        alert: {
+            type: type,
+            startDate: startDate,
+            endDate: endDate,
+            active: true
+        }
     },
     {
         headers: {
@@ -21,15 +25,14 @@ export default async function createAlert (type, startDate, endDate) {
             if (response.status !== 201 ) {
                 errorMessage = response.message;
             }
-            //TODO alerts = response.data._id;
-            alert("Created successfully");
         })
         .catch(error => {
             errorMessage = error;
         });
     if (errorMessage) {
-        return { success: false, result: errorMessage }
+        console.log('errorMessage from createAlert', errorMessage)
+        return { success: false, result: 'You have created an invalid alert, make sure to select the type and time frame range' }
     } else {
-        return { success: true, id: alerts }
+        return { success: true, result: `You will receive email notifications now. If you do not see the emails, check your “junk mail” folder or “spam” folder.` }
     }
 }
