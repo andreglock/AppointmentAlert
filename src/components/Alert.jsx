@@ -63,14 +63,14 @@ export default function Alert(props) {
     return <div className="Alert" key={Math.floor(Math.random() * 10000)} data={id}>
         <h3>
             <span>{mapName(appointmentAlert.type)}</span>
-{/* TODO            <Confirm
+            <Confirm
                 onConfirm={() => editAlertHandler(id)}
                 confirmText="Edit Alert"
                 title="Are you sure you want to edit this alert?">
                 <button className="AlertButton" testId="editAlertButton">
                     <FontAwesomeIcon icon={faEdit}/>
                 </button>
-            </Confirm> */}
+            </Confirm>
             <Confirm
                 onConfirm={() => deleteAlertHandler(appointmentAlert.id)}
                 body="This action cannot be undone."
