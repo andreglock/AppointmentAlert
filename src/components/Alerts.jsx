@@ -8,16 +8,12 @@ import '../scss/Alerts.scss';
 
 export default function Alerts (props) {
     const [ alerts, setAlerts] = useState(false);
-    console.log('Universes:', alerts);
-    // This state controls the modal "CreatePage":
-    const [ showCreatePage, setShowCreatePage] = useState(false);
-  
-    const [ user, setUser ] = useContext(UserContext);
+    const setUser = useContext(UserContext)[1];
 
     useEffect(() => {
         let rootRequest;
         async function fetchData () {
-            rootRequest = await getAlerts({ isRoot: true });
+            rootRequest = await getAlerts();
             if (rootRequest.success) {
                 setAlerts(rootRequest.result);
             } else if (rootRequest.result === 401 ) {
@@ -31,35 +27,20 @@ export default function Alerts (props) {
         fetchData();
     }, [setUser]);
 
-    return <div className="universePageContainer">
-        <header>
-            <h1>Welcome {user.userName}</h1>
-        </header>
+    return <div>
         {alerts ? <>
             <div className="universesContainer">
-            {alerts.length ? <h2>My universes</h2> : null}
-            {showCreatePage ?
-                <CreateAlert 
-                    setShow={setShowCreatePage}
-                    show={showCreatePage}
-                    isRoot={true}
-                    items={alerts}
-                    setItems={setAlerts}
-                /> :
-                <button className="universePageButton" onClick={() => setShowCreatePage(true)}>
-                    New universe
-                </button>
-            }
+            {alerts.length ? <h2>My Alerts</h2> : null}
             </div>
             {/* check if length is not 0 */}
             {alerts.length ? 
-                    alerts.map(universe => <Alert key={universe._id}
-                        universe={universe} universes={alerts} setUniverses={setAlerts}
+                    alerts.map(alert => <Alert key={alert.id}
+                        alert={alert} alerts={alerts} setAlerts={setAlerts}
                     />)
                  :
             /* If request goes through and it's an empty array */
-            <p>You don't have any universes</p>}
-            </> : <div>Loading universes...</div>
+            <p>You don't have any alerts set yet.</p>}
+            </> : <div>Loading alerts...</div>
         }
     </div>;
 }

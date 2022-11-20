@@ -16,7 +16,7 @@ function App() {
 		<div className="App">
 			<UserContext.Provider value={[user,setUser]}>
 				<div className="App-header">
-					{(!user) ? 
+					{(!user) ?
 						<div>
 							<div className="logRegNav">
 								<NavLink to='login'><div>Login</div></NavLink>
