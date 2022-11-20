@@ -1,15 +1,20 @@
 import axios from 'axios';
 import login from './login.js';
+import GlobalConfig from '../dev.json';
 
 export default function register (email, password, setUser, setMessage) {
-    axios.post('/register', {
-        email: email,
-        password: password
+    const url = GlobalConfig.endpoint;
+    axios.post(url + '/signup', {
+        user: {
+            username: email,
+            password: password
+        }
     })
         .then(response => {
-            if (response.data.status === 201) {
+            console.log("RESPONSE", response.data)
+            if (response.status === 200) {
                 // login if user is successfully created
-                login(email, password, false, setUser, setMessage);
+                login(email, password, setUser, setMessage);
             }
         })
         .catch(error => {

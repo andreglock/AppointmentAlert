@@ -4,7 +4,6 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import '../scss/CreateAlert.scss';
 import MessageModal from './MessageModal';
-import Alert from './Alert';
 import axios from "axios";
 import GlobalConfig from '../dev.json'
 
