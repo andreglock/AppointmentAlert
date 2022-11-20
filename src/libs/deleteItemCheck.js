@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export default async function deleteItemCheck(params) {
+export default async function eleteItemCheck(params) {
     let result = {};
     const token = localStorage.getItem('authToken');
     const request = {

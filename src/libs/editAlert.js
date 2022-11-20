@@ -1,17 +1,19 @@
 import axios from "axios";
+import GlobalConfig from '../dev.json';
 
-export default async function deleteItem(params) {
+export default async function editItem(params) {
+    const url = GlobalConfig.endpoint;
     let message = '';
     const token = localStorage.getItem('authToken');
     const request = {
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer: ${token}`
-        },   
-        params
+        },
+        body: params.body
     };
     
-    await axios.delete('/deleteItems', request)
+    await axios.put(url + '/alerts/' + params.id, request)
         .then(response => { 
             if ( response.status === 200 ) {
                 message = response.data.message;

@@ -1,20 +1,21 @@
-import axios from "axios";
+import axios from 'axios';
+import GlobalConfig from '../dev.json';
 
-export default async function getAlerts (params) {
-    let universes;
+export default async function getAlerts() {
+    const url = GlobalConfig.endpoint;
+    let alerts;
     let errorMessage;
     const token = localStorage.getItem('authToken');
 
-    await axios.get('/getItem',
+    await axios.get(url + '/alerts',
     {
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
-        },
-        params: params
+        }
     })
         .then(response => {
-            universes = response.data.items;
+            alerts = response.data;
         })
         .catch(error => {
             if (error.response) {
@@ -26,8 +27,8 @@ export default async function getAlerts (params) {
             }
             errorMessage = error;
         });
-    if (universes) {
-        return { success: true, result: universes }
+    if (alerts) {
+        return { success: true, result: alerts }
     } else {
         return { success: false, result: errorMessage }
     }
