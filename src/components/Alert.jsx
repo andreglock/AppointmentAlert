@@ -53,7 +53,6 @@ export default function Alert(props) {
             alerts.splice(index, 1);
             // Cloning by value and not by reference (same pointer)
             setAlerts([...alerts]);
-            alert("Deleted Successfully");
         } else {
             // display error message
             alert(deleteCheck.message);
