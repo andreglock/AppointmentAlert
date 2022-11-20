@@ -63,9 +63,6 @@ export default function Alert(props) {
     return <div className="Alert" key={Math.floor(Math.random() * 10000)} data={id}>
         <h3>
             <span>{mapName(appointmentAlert.type)}</span>
-            <button className="AlertButton" testId="editAlertButton" onClick={() => console.log('to edit')}>
-                    <FontAwesomeIcon icon={faEdit}/>
-            </button>
             <Confirm
                 onConfirm={() => editAlertHandler(id)}
                 confirmText="Edit Alert"
